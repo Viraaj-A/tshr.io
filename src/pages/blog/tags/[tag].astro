@@ -1,0 +1,91 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TagEntries from "@/components/blog/TagEntries.astro";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 py-24 lg:pt-32 mx-auto md:px-16">
+        <div class=" max-w-5xl mx-auto">
+          <div
+            class="w-full  h-full rounded-2xl grid items-start gap-4 lg:grid-cols-3">
+           <div class="lg:col-span-2">
+              <h1
+                class="text-4xl tracking-tighter font-display text-green-800 lg:text-6xl text-balance">
+                Blog posts tagged with {tag}
+              </h1>
+           </div>
+            <form>
+              <div class="flex flex-col gap-2 ">
+                <label
+                  for="email-address"
+                  class="sr-only"
+                  >Email address</label
+                >
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="min-w-0 flex-auto rounded-md bg-green-5 border-0 h-12 duration-300 px-3.5 py-2 text-green-900 ring-1 ring-inset ring-green-100 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-600"
+                  placeholder="Enter your email"
+                />
+                <button
+                  type="submit"
+                  class="relative group overflow-hidden rounded-md h-12 px-4 bg-green-200 group-hover:border-b duration-300">
+                  <div
+                    aria-hidden="true"
+                    class="transition duration-300 group-hover:-translate-y-12 text-green-700 font-medium">
+                    <div class="h-12 flex items-center">
+                      <span>Subscribe</span>
+                    </div>
+                    <div class="h-12 flex items-center justify-between w-full">
+                      <span>Subscribe </span>
+                      <span aria-hidden="true">→</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <dl class="flex flex-col w-full gap-y-24 mt-24 lg:mt-48">
+            {
+              posts.map((post) => (
+                <TagEntries
+                  url={"/blog/posts/" + post.slug}
+                  title={post.data.title}
+                  description={post.data.description}
+                  alt={post.data.title}
+                  pubDate={post.data.pubDate.toString().slice(0, 10)}
+                  author={post.data.author}
+                  image={post.data.image.url}
+                />
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

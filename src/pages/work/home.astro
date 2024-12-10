@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkEntries from "@/components/work/WorkEntries.astro";
+import CtaHire from "@/components/ctas/CtaHire.astro";
+const allwork = await getCollection("work");
+---
+
+<BaseLayout>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 py-24 lg:pt-32 mx-auto md:px-16">
+        <div class="grid items-end gap-4 lg:grid-cols-3 max-w-5xl mx-auto">
+          <div class="lg:col-span-2">
+            <h1
+              class="text-4xl tracking-tighter font-display text-green-800 lg:text-6xl text-balance">
+              Our latest projects
+            </h1>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+          {
+            allwork.map((post) => (
+              <WorkEntries
+                url={"/work/" + post.slug}
+                work={post.data.work}
+                project={post.data.project}
+                thumbnail={post.data.thumbnail.url}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

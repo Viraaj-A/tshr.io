@@ -1,0 +1,91 @@
+---
+const testimonials = [
+  {
+    src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Your alt",
+    testimonial:
+      "Working with this team has been an absolute pleasure. Their dedication and expertise have helped us achieve outstanding results.",
+    name: "David Johnson",
+    role: "Marketing Manager, Acme Corp",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Your alt",
+    testimonial:
+      "I am continually impressed by their professionalism and commitment to excellence. They consistently deliver top-notch work on time and within budget.",
+    name: "Sarah Adams",
+    role: "Creative Director, XYZ Design Studio",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Your alt",
+    testimonial:
+      "I highly recommend this team to anyone seeking reliable and skilled web development services. They are responsive, proactive, and always exceed expectations.",
+    name: "Michael Smith",
+    role: "Founder & CEO, Tech Innovations Inc",
+  },
+];
+---
+
+<section class="overflow-hidden relative">
+  <div class="bg-white 2xl:max-w-7xl mx-auto overflow-hidden">
+    <div class="px-8 py-24 mx-auto max-w-6xl md:px-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <div class="relative max-w-xs">
+            <div
+              class="absolute inset-0 flex items-center"
+              aria-hidden="true">
+              <div class="w-full border-t border-green-300"></div>
+            </div>
+            <div class="relative flex justify-start">
+              <span class="bg-white pr-2 text-sm text-green-500 font-medium"
+                >Our customers</span
+              >
+            </div>
+          </div>
+          <p
+            class="text-4xl tracking-tight font-display text-green-800 lg:text-5xl mt-24 text-balance">
+            Our clients have something to say about us.
+          </p>
+          <p class="text-green-500 text-2xl mt-8 font-display text-balance">
+            We have customers alla round the world.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 ">
+        {
+             testimonials.map((testimonial) => (
+                 <div class="flex flex-col">
+               <figure class=" flex flex-auto flex-col justify-between relative">
+                 <img
+                   src={testimonial.src}
+                   alt={testimonial.alt}
+                   class="max-h-96 object-cover relative"
+                 />
+                 <div class="p-8 absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 hover:bg-green-900/70 backdrop-blur-lg">
+                   <blockquote class="text-lg  text-white  font-medium">
+                     <p>“{testimonial.testimonial}”</p>
+                   </blockquote>
+                   <figcaption class="mt-10 flex items-center gap-x-6">
+                     <div class="text-base">
+                       <div class="font-semibold text-white">
+                         {testimonial.name}
+                       </div>
+                       <div class="mt-1 text-green-100 text-xs">
+                         {testimonial.role}
+                       </div>
+                     </div>
+                   </figcaption>
+                 </div>
+               </figure>
+             </div>
+             ))
+           }
+
+
+    </div>
+
+  </div>
+</section>

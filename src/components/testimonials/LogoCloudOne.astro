@@ -1,0 +1,74 @@
+---
+const logos = [
+  { src: "/logos/displacement_solutions.svg", alt: "Displacement Solutions"},
+  { src: "/logos/UNHCR.svg", alt: "UNHCR Logo"},
+  { src: "/logos/save_the_children.svg", alt: "Save the Children Logo"},
+  {src: "/logos/BMBF_english.svg",alt: "German Federal Ministry of Education and Research Logo"},
+  {src: "/logos/prototype_fund.svg",alt: "Prototype Fund Logo"},
+];
+---
+
+<section>
+ <div class="bg-white 2xl:max-w-7xl mx-auto">
+    <div
+      class="px-8 py-12  mx-auto max-w-6xl md:px-16">
+      <div
+        class="grid grid-cols-1 gap-12 items-center   lg:grid-cols-4 md:grid-cols-2 ">
+        <div class="col-span-full lg:col-span-1 lg:max-w-none lg:mr-auto mx-auto">
+          <p class="text-green-500 sm:text-sm text-md lg:text-md text-balance">
+            Some of the organisations we have worked with
+          </p>
+        </div>
+        <div class="md:col-span-3 overflow-hidden">
+          <div class="flex items-center animate-marquee gap-12 whitespace-nowrap">
+            {
+              logos.map((logo) => (
+                <img
+                  alt={logo.alt}
+                  class={`h-16 ${logo.classes || ""}`}
+                  src={logo.src}
+                />
+              ))
+            }
+            {
+              logos.map((logo) => (
+                <img
+                  alt={logo.alt}
+                  class={`h-16 ${logo.classes || ""}`}
+                  src={logo.src}
+                />
+              ))
+            }
+            {
+              logos.map((logo) => (
+                <img
+                  alt={logo.alt}
+                  class={`h-16 ${logo.classes || ""}`}
+                  src={logo.src}
+                />
+              ))
+            }
+            {
+              logos.map((logo) => (
+                <img
+                  alt={logo.alt}
+                  class={`h-16 ${logo.classes || ""}`}
+                  src={logo.src}
+                />
+              ))
+            }
+            {
+              logos.map((logo) => (
+                <img
+                  alt={logo.alt}
+                  class={`h-16 ${logo.classes || ""}`}
+                  src={logo.src}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+</section>

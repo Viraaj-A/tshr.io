@@ -1,0 +1,22 @@
+---
+const { project, work, url, thumbnail } = Astro.props;
+---
+
+<a
+  href={url}
+  title={project}
+  aria-label={project}>
+  <div class="relative overflow-hidden rounded-2xl">
+    <img
+      class="h-full w-full relative rounded-2xl object-top object-cover"
+      src={thumbnail}
+      alt={project}
+    />
+    <div
+      class="p-4 absolute bottom-0 w-full flex items-center justify-center bg-green-200 gap-2">
+      <p class="text-green-900 font-semibold">{project}</p>
+      —
+    <p class="text-green-600 font-normal">{work}</p>
+    </div>
+  </div>
+</a>

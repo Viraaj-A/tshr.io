@@ -1,0 +1,24 @@
+meta {
+  name: curl_paragraph_test
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://arweave.net/graphql
+  body: json
+  auth: none
+}
+
+headers {
+  Accept-Encoding: gzip, deflate, br
+  Content-Type: application/json
+  Accept: application/json
+  Connection: keep-alive
+  DNT: 1
+  Origin: https://arweave.net
+}
+
+body:json {
+  {"query":"query GetParagraphPosts($wallet: String!) {\n transactions(tags:[\n {\n name:\"AppName\",\n values:[\"Paragraph\"],\n },\n {\n name:\"Contributor\",\n values:[$wallet]\n }\n ], sort:HEIGHT_DESC, first: 1){\n \n edges {\n node {\n id\n }\n }\n }\n}","variables":{"wallet":"0x8f1e16BE9B6F88acF2cd58Da84A335463350B9fb"}}
+}

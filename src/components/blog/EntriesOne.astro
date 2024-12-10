@@ -1,0 +1,43 @@
+---
+const { title, url, author, pubDate, description,  } = Astro.props;
+---
+
+<div class="group relative flex flex-col items-start">
+  <dt>
+    <h2 class="font-display text-green-500 text-2xl">
+      <div
+        class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-green-50/30 backdrop-blur-md opacity-0 transition group-hover:scale-100 group-hover:opacity-100 duration-300 sm:-inset-x-6 sm:rounded-2xl">
+      </div>
+      <a
+        href={url}
+        title={title}
+        ><span
+          class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"
+        ></span><span class="relative z-10">{title}</span></a
+      >
+    </h2>
+    <span class=" text-xs text-green-400 z-10 relative font-medium"
+      >{author} on {pubDate}
+    </span>
+  </dt>
+  <dd>
+    <p
+      class="relative z-10 text-green-500 text-base mt-8 text-pretty items-center">
+      {description}
+    </p>
+    <div
+      class="relative group overflow-hidden h-12 group-hover:border-b duration-300 mt-4">
+      <div
+        aria-hidden="true"
+        class="transition duration-300 group-hover:-translate-y-12">
+        <div class="h-12 flex items-center">
+          <span class="text-green-700">Read article</span>
+        </div>
+        <div class="h-12 flex items-center justify-between w-full">
+          <span class="text-green-700">Read article </span>
+          <span aria-hidden="true">→</span>
+        </div>
+      </div>
+    </div>
+  </dd>
+</div>

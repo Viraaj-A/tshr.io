@@ -1,0 +1,127 @@
+<!-- Create a hidden form that Netlify can detect during build -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="first-name" />
+  <input type="text" name="last-name" />
+  <input type="email" name="email" />
+  <input type="text" name="company" />
+  <input type="tel" name="phone" />
+  <textarea name="message"></textarea>
+</form>
+
+<section>
+  <div class="bg-white 2xl:max-w-7xl mx-auto">
+    <div class="px-8 pt-24 lg:pt-32 pb-12 md:px-16">
+      <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-3 mx-auto">
+        <div class="w-full bg-green-500 p-10 lg:p-16 h-full rounded-2xl flex flex-col justify-between">
+          <img class="size-12 md:size-24 invert" src="/shapes/3.svg" alt="" />
+          <div>
+            <h1 class="text-4xl mt-12 lg:mt-0 tracking-tighter font-display text-white text-balance">
+              Ready to work on the next big thing
+            </h1>
+          </div>
+        </div>
+        <form
+          name="contact"
+          method="POST"
+          class="lg:col-span-2 bg-green-50 p-10 lg:p-16 rounded-2xl">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+          <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div>
+              <label for="first-name" class="block text-sm font-semibold leading-6 text-green-500">First name</label>
+              <div class="mt-2.5">
+                <input
+                  type="text"
+                  name="first-name"
+                  id="first-name"
+                  required
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="last-name" class="block text-sm font-semibold leading-6 text-green-500">Last name</label>
+              <div class="mt-2.5">
+                <input
+                  type="text"
+                  name="last-name"
+                  id="last-name"
+                  required
+                  autocomplete="family-name"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="email" class="block text-sm font-semibold leading-6 text-green-500">Email</label>
+              <div class="mt-2.5">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="company" class="block text-sm font-semibold leading-6 text-green-500">Company</label>
+              <div class="mt-2.5">
+                <input
+                  type="text"
+                  name="company"
+                  id="company"
+                  autocomplete="organization"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <div class="flex justify-between text-sm leading-6">
+                <label for="phone" class="block font-semibold text-green-500">Phone</label>
+                <p id="phone-description" class="text-green-400">Optional</p>
+              </div>
+              <div class="mt-2.5">
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  autocomplete="tel"
+                  aria-describedby="phone-description"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <div class="flex justify-between text-sm leading-6">
+                <label for="message" class="block text-sm font-semibold leading-6 text-green-500">How can we help you?</label>
+                <p id="message-description" class="text-green-400">Max 500 characters</p>
+              </div>
+              <div class="mt-2.5">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  aria-describedby="message-description"
+                  class="block w-full rounded-md border-0 px-3.5 py-2 text-green-500 ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10 flex w-full">
+            <button
+              type="submit"
+              class="relative group overflow-hidden rounded-md h-12 px-4 bg-green-100 hover:bg-green-500 hover:text-green-200 text-green-500 font-medium duration-300">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

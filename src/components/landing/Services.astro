@@ -1,0 +1,57 @@
+---
+import Highlights from "@/components/services/Highlights.astro";
+const allServices = await getCollection("services");
+import { getCollection } from "astro:content";
+---
+<section class="overflow-hidden relative">
+  <div class="bg-green-500 2xl:max-w-7xl mx-auto">
+    <div class="px-8 py-8 mx-auto max-w-6xl md:px-16">
+      <div class="w-full max-w-xl">
+        <div class="relative max-w-xs">
+          <div
+            class="absolute inset-0 flex items-center"
+            aria-hidden="true">
+            <div class="w-full border-t border-green-300"></div>
+          </div>
+          <div class="relative flex justify-start">
+            <span class="font-furore bg-green-500 pr-2 text-sm text-white font-medium"
+              >Services</span
+            >
+          </div>
+        </div>
+        <h1
+          class="text-1xl tracking-tight font-display text-white lg:text-2xl mt-12 text-balance">
+          Transforming qualitative data into clear, actionable insights. We make complex information accessible and understandable, empowering informed decisions and driving meaningful change.
+        </h1>
+        <p class="text-white text-1xl mt-8 font-display text-balance">
+          TSHR custom-builds and fine-tunes each tool to fit specific needs, going beyond off-the-shelf models to deliver precise, tailored solutions—while maintaining privacy and, in legal matters, confidentiality. 
+        </p>
+      </div>
+      <div
+        class="flex flex-col flex-shrink-0 gap-8 md:flex-row md:gap-12 mt-8 md:items-center">
+        <ul
+          role="list"
+          class="flex flex-col gap-y-2 max-w-xl w-full">
+          {
+            allServices
+              .slice(0, 6)
+              .map((post) =>
+              <Highlights
+              service={post.data.service}
+              />)
+          }
+        </ul>
+        <a
+          title="link to your page"
+          aria-label="your label"
+          href="/services/home"
+          class="flex size-32 text-sm md:text-base lg:text-2xl xl:text-3xl text-center md:size-32 shrink-0 lg:size-52 2xl:size-64 text-white hover:bg-brown-900 hover:text-brown-200 duration-300 items-center justify-center rounded-full bg-green-600">
+          <p>
+            <span class="block">Learn</span>
+            <span class="block">more</span>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

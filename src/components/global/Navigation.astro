@@ -1,0 +1,76 @@
+<section x-data="{ atTop: true } ">
+  <div
+    class="fixed z-50 w-full px-6 mx:px-0  py-4 top-0 transition-all lg:top-10 duration-1000 max-w-5x inset-x-0 mx-auto ease-in-out transform bg-white"
+    :class="{ ' max-w-7xl  top-0 bg-green-200 py-1 px-8 md:px-20': !atTop, 'max-w-5xl top-0 lg:top-10 py-4 px-0 md:px-0': atTop }"
+    @scroll.window="atTop = (window.pageYOffset > 10 ? false : true)">
+    <div
+      x-data="{ open: false }"
+      :class="{ ' lg:px-8 ': !atTop, 'lg:px-0': atTop }"
+      class="flex flex-col w-full py-2 mx-auto lg:px-0 md:items-center md:justify-between md:flex-row transition-all duration-1000 ease-in-out transform">
+      <div class="flex flex-row items-center justify-between">
+        <div
+          :class="{ 'pl-4 ': !atTop, 'pl-0': atTop }"
+          class="pl-0 duration-1000 ease-in-out transform transition-all">
+          <a
+            href="/"
+            title="link to your page"
+            aria-label="your label"
+            class="font-bold font-furore tracking-tighter text-green-500 uppercase">
+             TSHR
+          </a>
+        </div>
+        <!-- <button class="md:hidden focus:outline-none">
+          <button
+            class="focus:shadow-outline text-black focus:outline-none lg:hidden rounded-lg"
+            @click="open = !open"
+            ><svg
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                d="M4 6h16M4 12h16M4 18h16"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                :class="{'hidden': open, 'inline-flex': !open }"
+                class="inline-flex"
+              ></path><path
+                d="M6 18L18 6M6 6l12 12"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                :class="{'hidden': !open, 'inline-flex': open }"
+                class="hidden"
+              ></path></svg
+            ></button
+          >
+        </button> -->
+      </div>
+      <!-- <nav
+        :class="{'flex': open, 'hidden': !open}"
+        class="items-center text-sm flex-grow flex-col hidden gap-y-4 lg:flex lg:flex-row text-green-600 lg:justify-start py-1 gap-x-4">
+        <a
+          href="/system/overview"
+          title="link to your page"
+          aria-label="your label"
+          class="hover:text-pink-500 lg:ml-auto"
+          >Overview
+        </a><a
+          href="/system/styleguide"
+          title="link to your page"
+          aria-label="your label"
+          class="hover:text-pink-500"
+          >Style Guide
+        </a>
+        <a
+          href="https://lexingtonthemes.lemonsqueezy.com/checkout/buy/23c823c8-84e5-4978-9ef1-729c8b154fa9"
+          title="link to your page"
+          aria-label="your label"
+          class="text-sm px-4 text-green-500 lg:pl-4 lg:border-l-2 hover:text-pink-500 hover:border-pink-500"
+          >Buy outkast &nbsp; &rarr;
+        </a>
+      </nav> -->
+    </div>
+  </div>
+</section>

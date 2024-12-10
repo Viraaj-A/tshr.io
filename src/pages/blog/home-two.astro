@@ -1,0 +1,109 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import EntriesTwo from "@/components/blog/EntriesTwo.astro";
+import CtaSubscribe from "@/components/ctas/CtaSubscribe.astro";
+const allPosts = await getCollection("posts");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+---
+
+<BaseLayout>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 pt-24 lg:pt-32 pb-12 md:px-16">
+        <div class="items-start gap-24 flex flex-col mx-auto">
+          <div
+            class="w-full max-w-5xl mx-auto h-full rounded-2xl grid items-start gap-4 lg:grid-cols-3">
+            <div class="lg:col-span-2">
+              <h1
+                class="text-4xl tracking-tighter font-display text-green-800 lg:text-6xl text-balance">
+                Welcome to our blog.
+              </h1>
+              <p class="text-base font-medium text-green-500">
+                Read articles about our work, projects, and more.
+              </p>
+            </div>
+            <form>
+              <div class="flex flex-col gap-2">
+                <label
+                  for="email-address"
+                  class="sr-only"
+                  >Email address</label
+                >
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="min-w-0 flex-auto rounded-md bg-green-5  border-0 h-12 duration-300 px-3.5 py-2 text-green-900 ring-1 ring-inset ring-green-100 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-600"
+                  placeholder="Enter your email"
+                />
+                <button
+                  type="submit"
+                  class="relative group overflow-hidden rounded-md h-12 px-4 bg-green-200 group-hover:border-b duration-300">
+                  <div
+                    aria-hidden="true"
+                    class="transition duration-300 group-hover:-translate-y-12 text-green-700 font-medium">
+                    <div class="h-12 flex items-center">
+                      <span>Subscribe</span>
+                    </div>
+                    <div class="h-12 flex items-center justify-between w-full">
+                      <span>Subscribe </span>
+                      <span aria-hidden="true">→</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+          <img
+            class="aspect-[4/4] object-cover rounded-2xl h-96 object-top lg:col-span-2 w-full"
+            src="https://i.pinimg.com/736x/9a/49/12/9a49125a2945b2e1fbb2abe3ebb27671.jpg"
+            alt="your alt"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto overflow-hidden relative">
+      <img
+        src="/shapes/2.svg"
+        class="absolute w-full h-full opacity-[0.1] z-0 -right-64 sm:-right-96"
+        alt="your alt"
+      />
+      <div class="px-8 py-12 mx-auto max-w-6xl md:px-16 space-y-24">
+        <div
+          class="relative flex flex-wrap justify-start gap-2 ">
+          {
+            tags.map((tag) => (
+              <a
+                class="text-sm text-green-500 font-medium hover:text-pink-700"
+                href={`/blog/tags/${tag}`}>
+                {tag} -{" "}
+              </a>
+            ))
+          }
+        </div>
+        <dl
+          class="grid g sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 list-none">
+          {
+            allPosts.slice().map((post) => (
+              <EntriesTwo
+                url={"/blog/posts/" + post.slug}
+                title={post.data.title}
+                description={post.data.description}
+                alt={post.data.title}
+                pubDate={post.data.pubDate.toString().slice(0, 10)}
+                author={post.data.author}
+                image={post.data.image.url}
+              />
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+  <CtaSubscribe />
+</BaseLayout>

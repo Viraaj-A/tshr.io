@@ -1,0 +1,35 @@
+---
+const { name, role, avatar, url } = Astro.props;
+---
+
+<a
+  href={url}
+  title={name}
+  aria-label={name}>
+  <ul role="list">
+    <li class="flex flex-col lg:flex-row lg:items-center justify-between w-full group">
+      <div class="flex justi  items-center gap-4 w-full">
+        <img
+          class="size-12 xl:size-16 flex-none rounded-full bg-green-50"
+          src={avatar}
+          alt={name}
+        />
+        <div
+          class="relative group overflow-hidden h-12 group-hover:border-b border-green-300 duration-300 w-full">
+          <div
+            aria-hidden="true"
+            class="transition duration-300 group-hover:-translate-y-12 w-full text-green-700 font-medium text-xl">
+            <div class="h-12 flex items-center w-full">
+              <span class="">{name}</span>
+            </div>
+            <div class="h-12 flex items-center justify-between w-full gap-2">
+              <span >{role} </span>
+              <span aria-hidden="true">→</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+</a>

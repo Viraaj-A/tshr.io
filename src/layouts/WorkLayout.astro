@@ -1,0 +1,38 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import CtaHire from "@/components/ctas/CtaHire.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 py-12 lg:pt-12 mx-auto md:px-16">
+        <img
+          class="w-full max-h-[50vh] rounded-t-2xl relative object-cover object-top mt-12"
+          src={frontmatter.thumbnail.url}
+          alt={frontmatter.thumbnail.alt}
+        />
+        <div
+          class="bg-green-200 text-green-600 relative rounded-b-2xl z-10 py-2 px-4 bottom-0 w-full overflow-x-hidden">
+          <div
+            class="items-center relative animate-marquee flex gap-4 whitespace-nowrap">
+            {
+              Array.from({ length: 20 }).map((_) => (
+                <span>{frontmatter.project}.</span>
+              ))
+            }
+          </div>
+        </div>
+        <div class="max-w-5xl mx-auto mt-12">
+          <div class="max-w-xl">
+            <div class="prose-styles">
+              <slot />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

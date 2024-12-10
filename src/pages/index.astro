@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import EntriesTwo from "@/components/blog/EntriesTwo.astro";
+const allPosts = await getCollection("posts");
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/landing/Hero.astro";
+import LogoCloudOne from "@/components/testimonials/LogoCloudOne.astro";
+import Services from "@/components/landing/Services.astro";
+import Work from "@/components/landing/Work.astro";
+import Why from "@/components/landing/Why.astro";
+import Blog from "@/components/landing/Blog.astro"
+---
+
+<BaseLayout>
+  <Hero />
+  <Services />
+  <LogoCloudOne />
+  <Work />
+  <Why />
+  <Blog />
+</BaseLayout>

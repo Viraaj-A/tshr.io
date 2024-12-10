@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Paragraph_blog",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

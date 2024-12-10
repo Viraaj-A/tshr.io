@@ -1,0 +1,87 @@
+---
+const reasons = [
+  {
+    term: "Expertise",
+    description:
+      "Our team consists of highly skilled diverse professionals with extensive experience in machine learning, research, database design, UI/UX, economics, and web development.",
+  },
+  {
+    term: "Future-Ready and Efficient Technology",
+    description:
+      "Built on the latest academic research, our tools are innovative and reliable. Citing these sources shows their solid foundations, building trust in a world of misleading innovation.",
+  },
+  {
+    term: "Inclusive, User-Centric Design",
+    description:
+      "Built with accessibility and usability at the core, these tools make complex qualitative data understandable for users from all backgrounds, ranging from professional users to underserved communities.",
+  },
+  {
+    term: "Streamlined Insights from Qualitative Data",
+    description:
+      "Complex data is transformed into clear, actionable insights, empowering both specialists and non-experts to make informed, data-driven decisions and apply insights directly to their unique challenges.",
+  },
+  {
+    term: "Open-Source and Adaptable Solutions",
+    description:
+      "With open-source, customizable tools, organizations can implement secure, flexible solutions tailored to specific needs, supporting internal hosting and alignment with evolving goals.",
+  },
+  {
+    term: "Custom, Efficient Models for Greater Accuracy",
+    description:
+      "Purpose-built models provide high accuracy with low computational demands, delivering advanced insights even on limited infrastructure and maximizing resource efficiency.",
+  },
+];
+
+
+import { getCollection } from "astro:content";
+const teamMembers = await getCollection("team");
+const viraajProfile = teamMembers.find((member) => member.slug === "1_viraaj_akuthota");
+---
+
+<section>
+  <div class="bg-green-500 2xl:max-w-7xl mx-auto overflow-hidden relative">
+    <img
+      src="/shapes/3.svg"
+      class="absolute w-full h-full opacity-[0.2] z-0 invert -left-64 sm:-left-96 -bottom-72 rotate-45"
+      alt="your alt"
+    />
+    <div class="px-8 py-24 mx-auto max-w-6xl md:px-16">
+      <div class="flex flex-col max-w-xl lg:ml-auto">
+        <div class="relative max-w-xs">
+          <div
+            class="absolute inset-0 flex items-center"
+            aria-hidden="true">
+            <div class="w-full border-t border-green-300"></div>
+          </div>
+          <div class="relative flex justify-start">
+            <span class="font-furore bg-green-500 pr-2 text-sm text-white font-medium">
+              TSHR
+            </span>
+          </div>
+        </div>
+        <p
+          class="text-4xl tracking-tight font-display text-white lg:text-5xl mt-12 text-balance">
+          Why choose our web agency?
+        </p>
+        <p class="text-green-100 text-2xl mt-8 font-display text-balance">
+          Founded by Viraaj Akuthota, TSHR is dedicated to making complex data clear and actionable. 
+          <a href={`/team/${viraajProfile.slug}`} class="underline text-green-100">Click here</a> for Viraaj Akuthota's background.
+        </p>
+      </div>
+      <dl
+        class="grid gap-12 lg:grid-cols-2 mt-12 lg:mt-24 lg:max-w-xl lg:ml-auto">
+        {
+          reasons.map((reason, index) => (
+            <div>
+              <dt class="font-display text-white text-2xl">{reason.term}</dt>
+              <dd class="text-green-100 text-base mt-4 text-pretty">
+                {reason.description}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+    </div>
+  </div>
+</section>

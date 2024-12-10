@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const allPosts = await getCollection("posts");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const pageTitle = "Tag Index";
+---
+<BaseLayout pageTitle={pageTitle}>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 py-24 lg:pt-32 mx-auto md:px-16">
+        <div class="gap-4 lflex flex-col max-w-5xl mx-auto">
+          <div class="grid items-end gap-4 lg:grid-cols-3 max-w-5xl mx-auto">
+            <div class="lg:col-span-2">
+              <h1
+                class="text-4xl tracking-tighter font-display text-green-800 lg:text-6xl text-balance">
+                All tags
+              </h1>
+            </div>
+            <p class="text-base font-medium text-green-500">
+              Explore all tags from our blog.
+            </p>
+          </div>
+          <div
+            class="relative flex flex-col divide-y divide-green-200 overflow-hidden w-full mt-24">
+            {
+              tags.sort().map((tag) => (
+                <a href={`/blog/tags/${tag}`}>
+                  <div class="relative group overflow-hidden items-center h-16 group-hover:border-b duration-300">
+                    <div
+                      aria-hidden="true"
+                      class="transition duration-300 group-hover:-translate-y-12 capitalize">
+                      <div class="h-16 flex items-center">
+                        <span class="text-green-500 text-2xl font-display">
+                          {tag}
+                        </span>
+                      </div>
+                      <div class="h-16 flex items-center justify-between w-full">
+                        <span class="text-green-500 text-2xl font-display ">
+                          See all posts tagged with {tag}
+                        </span>
+                        <span aria-hidden="true">→</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

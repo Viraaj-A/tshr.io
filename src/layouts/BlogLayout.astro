@@ -1,0 +1,68 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 py-24 lg:pt-32 mx-auto md:px-16">
+        <div class="gap-4 lflex flex-col max-w-5xl mx-auto">
+          <div class="grid items-center gap-4 lg:grid-cols-2 max-w-5xl mx-auto">
+            <div>
+              <div class="relative max-w-xs">
+                <div
+                  class="absolute inset-0 flex items-center"
+                  aria-hidden="true">
+                  <div class="w-full border-t border-green-300"></div>
+                </div>
+                <div class="relative flex justify-start">
+                  <span class="bg-white pr-2 text-xs text-green-500 font-medium"
+                    >By: {frontmatter.author} on
+                    {frontmatter.pubDate.toString().slice(3, 16)}</span
+                  >
+                </div>
+              </div>
+              <h1
+                class="text-4xl mt-24 tracking-tighter font-display text-green-800 lg:text-7xl text-balance">
+                {frontmatter.title}
+              </h1>
+              <p class="text-base font-medium text-green-500 text-balance">
+                {frontmatter.description}
+              </p>
+            </div>
+            <img
+              class="w-full max-h-[50vh] rounded-2xl relative object-cover object-top mt-12"
+              src={frontmatter.image.url}
+              alt={frontmatter.image.alt}
+            />
+          </div>
+          <div class="relative w-full py-12">
+            <div
+              class="absolute inset-0 flex items-center"
+              aria-hidden="true">
+              <div class="w-full border-t border-green-300"></div>
+            </div>
+            <div class="relative flex justify-start">
+              <div
+                class="bg-white pr-2 flex gap-2 text-sm text-green-500 font-medium">
+                {
+                  frontmatter.tags.map((tag) => (
+                    <a href={`/tags/${tag}`}>{tag}</a>
+                  ))
+                }
+              </div>
+
+            </div>
+          </div>
+          <div class="max-w-xl ">
+            <div class="prose-styles">
+              <slot />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

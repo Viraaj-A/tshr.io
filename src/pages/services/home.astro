@@ -1,0 +1,83 @@
+---
+import ServicesEntries from "@/components/services/ServicesEntries.astro";
+import { getCollection } from "astro:content";
+import CtaHire from "@/components/ctas/CtaHire.astro";
+const allServices = await getCollection("services");
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <!-- <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto">
+      <div class="px-8 pt-24 lg:pt-32 pb-12 md:px-16">
+        <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-1 mx-auto">
+          <div
+            class="w-full bg-green-500 p-10 lg:p-16 h-full rounded-2xl flex flex-col justify-between">
+            <img
+              class="size-12 md:size-24"
+              src="/shapes/1.svg"
+              alt=""
+            />
+            <div>
+              <h1
+                class="text-4xl mt-12 lg:mt-0 tracking-tighter font-display text-white text-balance">
+                Ready to work on the next big thing
+              </h1>
+            </div>
+          </div>
+          <img
+            class="aspect-[4/4] object-cover rounded-2xl h-full lg:col-span-2 w-full"
+            src="/placeholders/2.png"
+            alt="your alt"
+          />
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section>
+    <div class="bg-white 2xl:max-w-7xl mx-auto overflow-hidden relative">
+      <img
+        src="/shapes/2.svg"
+        class="absolute w-full h-full opacity-[0.2] z-0 -right-64 sm:-right-96 -bottom-96"
+        alt="your alt"
+      />
+      <div class="px-8 py-2 mx-auto max-w-6xl md:px-16 space-y-24">
+        <div class="grid items-end gap-4 lg:grid-cols-3 mx-auto">
+          <div class="lg:col-span-2">
+            <div class="relative max-w-xs">
+              <div
+                class="absolute inset-0 flex items-center"
+                aria-hidden="true">
+                <div class="w-full border-t border-green-300"></div>
+              </div>
+              <div class="relative flex justify-start">
+                <span class="font-furore bg-white pr-2 text-sm text-green-500 font-medium"
+                  >How we work</span
+                >
+              </div>
+            </div>
+
+            <h1
+              class="text-4xl tracking-tight font-display text-green-800 lg:text-5xl mt-12 text-balance">
+              We create a unique and engaging experience for our clients.
+            </h1>
+          </div>
+        </div>
+        <dl
+          class="grid g sm:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-24 list-none max-w-xl">
+          {
+            allServices.map((post) => (
+              <ServicesEntries
+                url={"/services/" + post.slug}
+                service={post.data.service}
+                description={post.data.description}
+              />
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+  <CtaHire />
+</BaseLayout>

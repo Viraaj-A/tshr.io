@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+import Metas from "./seo/Metas.astro";
+import Favicons from "./seo/Favicons.astro";
+const {
+  title = "TSHR",
+  description = "Tech Solutions for Human Rights - Building technology for social impact",
+  url,
+  socialImage = "/social-preview-image.png",
+  twitterImage = "/twitter-preview-image.png", // Assuming you have a separate image for Twitter
+  author = "Tech Solutions for Human Rights",
+} = Astro.props;
+const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
+---
+
+<Metas
+  title={title}
+  description={description.substring(0, 100)}
+  url={Astro.site
+    ? `${Astro.site}/${sanitizedTitle}`
+    : `https://tshr.io/${sanitizedTitle}`}
+  image={socialImage}
+  author={author}
+  twitterImage={twitterImage}
+/>
+<Favicons />
+<link
+  rel="preconnect"
+  href="https://rsms.me/"
+/>
+<link
+  rel="stylesheet"
+  href="https://rsms.me/inter/inter.css"
+/>
+<link
+  href="https://api.fontshare.com/v2/css?f[]=epilogue@1,2&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Alpine.js Plugins -->
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+></script>
+<!-- Alpine.js Core -->
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+></script>

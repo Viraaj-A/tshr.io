@@ -1,0 +1,159 @@
+---
+// Define the data for each section and its pages
+const pages = [
+  {
+    title: "Overview",
+    categories: [
+      {
+        name: "Pages",
+        links: [
+          { href: "/", text: "Home" },
+          { href: "/infopages/about", text: "About us" },
+          { href: "/404", text: "Error 404" },
+        ],
+      },
+
+      {
+        name: "Pricing",
+        links: [
+          { href: "/pricing/pricing-simple", text: "Simple" },
+          { href: "/pricing/pricing-full", text: "Table" },
+        ],
+      },
+
+      {
+        name: "Forms",
+        links: [
+
+          { href: "/forms/contact", text: "Contact" },
+        ],
+      },
+      {
+        name: "System",
+        links: [
+          { href: "/system/styleguide", text: "Style Guide" },
+          {
+            href: "https://lexingtonthemes.com/legal/license",
+            text: "License",
+          },
+          {
+            href: "https://lexingtonthemes.com/legal/support/",
+            text: "Support",
+          },
+          {
+            href: "https://lexingtonthemes.com/documentation/quick-start",
+            text: "Documentation",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Content collections",
+    categories: [
+      {
+        name: "Blog",
+        links: [
+          { href: "/blog/home", text: "Blog home" },
+          { href: "/blog/home-two", text: "Blog home two" },
+          { href: "/blog/posts/1", text: "Blog post" },
+          { href: "/blog/tags", text: "Tag index" },
+          { href: "/blog/tags/astro", text: "Tag category" },
+          { href: "/rss.xml", text: "RSS" },
+        ],
+      },
+      {
+        name: "Work",
+        links: [
+          { href: "/work/home", text: "Home" },
+          { href: "/work/1", text: "Details" },
+        ],
+      },
+      {
+        name: "Services",
+        links: [
+          { href: "/services/home", text: "Home" },
+          { href: "/services/web-develpment", text: "Details" },
+        ],
+      },
+      {
+        name: "Team",
+        links: [
+          { href: "/team/home", text: "Home" },
+          { href: "/team/1", text: "Details" },
+        ],
+      },
+      {
+        name: "Utility pages",
+        links: [
+          { href: "/infopages/dpa", text: "DPA" },
+          { href: "/infopages/terms", text: "Terms" },
+          { href: "/infopages/privacy", text: "Privacy" },
+          { href: "/infopages/cookies", text: "Cookies" },
+
+        ],
+      },
+    ],
+  },
+];
+---
+
+<section>
+  <div class="bg-white 2xl:max-w-7xl mx-auto">
+    <div class="px-8 py-24 lg:pt-32 mx-auto md:px-16">
+      <div class="grid items-end gap-4 lg:grid-cols-3 max-w-5xl mx-auto">
+        <div class="lg:col-span-2">
+          <h1
+            class="text-4xl tracking-tighter font-display text-green-800 lg:text-6xl text-balance">
+            Overview
+          </h1>
+        </div>
+        <p class="text-base font-medium text-green-500">
+          Explore all pages on Outkast
+        </p>
+        <div class="mt-48 space-y-16 col-span-full">
+          {
+            pages.map((section) => (
+              <div>
+                <div class="relative max-w-xs">
+                  <div
+                    class="absolute inset-0 flex items-center"
+                    aria-hidden="true">
+                    <div class="w-full border-t border-green-300" />
+                  </div>
+                  <div class="relative flex justify-start">
+                    <span class="bg-white pr-2 text-sm text-green-500 font-medium">
+                      {section.title}
+                    </span>
+                  </div>
+                </div>
+                <div class="mt-24 gap-y-12 gap-x-6 grid grid-cols-2 xl:grid-cols-4 ">
+                  {section.categories.map((category) => (
+                    <div class="flex flex-col gap-4 ">
+                      <h3 class="text-2xl tracking-tight font-display text-green-800 ">
+                        {category.name}
+                      </h3>
+                      <ul
+                        role="list"
+                        class="grid grid-cols-1 gap-2   lg:col-span-2">
+                        {category.links.map((link) => (
+                          <li>
+                            <a
+                              href={link.href}
+                              class="text-green-500 text-xl mt-8 font-display hover:text-pink-500 duration-200">
+                              {link.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
