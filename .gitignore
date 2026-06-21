@@ -13,3 +13,7 @@ pnpm-debug.log*
 .DS_Store
 
 .astro
+
+# dependencies & build output — Netlify reinstalls/rebuilds these (never commit)
+node_modules
+dist
