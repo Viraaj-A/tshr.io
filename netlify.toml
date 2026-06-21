@@ -1,5 +1,8 @@
 [build]
-  command = "npm run build"
+  # `npm ci` wipes the (Windows-committed) node_modules and reinstalls cleanly
+  # so binaries like `astro` get the Linux executable bit. Without this the
+  # build fails with "astro: Permission denied" (exit 127).
+  command = "npm ci && npm run build"
   publish = "dist"
 
 [build.environment]
