@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Pin to match local toolchain (Node 22) so builds are deterministic.
+  NODE_VERSION = "22"

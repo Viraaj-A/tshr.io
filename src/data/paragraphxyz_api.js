@@ -1,8 +1,22 @@
 // paragraphxyz_api.js
+
+// Fetch with a hard per-request timeout so a slow/hanging gateway can never
+// stall the build. Aborts after `timeoutMs` and throws, letting the existing
+// try/catch fallbacks take over.
+async function fetchWithTimeout(resource, options = {}, timeoutMs = 6000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(resource, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 export async function fetchParagraphPosts() {
   try {
     // Try goldsky API
-    const response = await fetch("https://arweave-search.goldsky.com/graphql", {
+    const response = await fetchWithTimeout("https://arweave-search.goldsky.com/graphql", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,32 +42,32 @@ export async function fetchParagraphPosts() {
         `
       })
     });
- 
+
     const data = await response.json();
-    
+
     if (data.data?.transactions?.edges) {
       // Get content for all transactions with multiple gateway fallbacks
       const posts = await Promise.all(
         data.data.transactions.edges.map(async ({ node }) => {
           try {
             // Try arweave.dev first
-            const contentResponse = await fetch(`https://arweave.dev/${node.id}`);
+            const contentResponse = await fetchWithTimeout(`https://arweave.dev/${node.id}`);
             if (contentResponse.ok) {
               return await contentResponse.json();
             }
-            
+
             // Try g8way.io if first fails
-            const g8wayResponse = await fetch(`https://g8way.io/${node.id}`);
+            const g8wayResponse = await fetchWithTimeout(`https://g8way.io/${node.id}`);
             if (g8wayResponse.ok) {
               return await g8wayResponse.json();
             }
- 
+
             // Try arweave.net as last resort
-            const arweaveResponse = await fetch(`https://arweave.net/${node.id}`);
+            const arweaveResponse = await fetchWithTimeout(`https://arweave.net/${node.id}`);
             if (arweaveResponse.ok) {
               return await arweaveResponse.json();
             }
- 
+
             // If all gateways fail, return placeholder data
             console.error(`Failed to fetch content for transaction ${node.id}`);
             return {
@@ -73,14 +87,14 @@ export async function fetchParagraphPosts() {
           }
         })
       );
- 
+
       // Filter out any failed posts but ensure we return at least an empty array
       return posts.filter(post => post.title !== 'Error Loading Post') || [];
     }
- 
+
     console.error('No posts found in initial query');
     return [];
- 
+
   } catch (error) {
     console.error('Error in fetchParagraphPosts:', error);
     return [];

@@ -32,6 +32,10 @@ export const GET: APIRoute = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
+      // Hard cap so a slow/stalled gateway can never hang the build. This
+      // endpoint is prerendered at build time under Astro's static output,
+      // so an un-timed fetch here would block `npm run build` indefinitely.
+      signal: AbortSignal.timeout(8000),
     });
 
     console.log('🟣 Response status:', response.status);
