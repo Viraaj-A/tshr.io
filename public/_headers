@@ -1,0 +1,4 @@
+# Keep the private VERI-Mi report out of search engines.
+# The page is also password-encrypted (StatiCrypt) and linked from nowhere.
+/veri-me/*
+  X-Robots-Tag: noindex, nofollow, noarchive
